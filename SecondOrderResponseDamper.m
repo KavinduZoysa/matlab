@@ -1,13 +1,14 @@
-duration = 25; m = 50;
+duration = 25; m = 200;
 y0 = -1.50; yd0 = 1.80;
+% y0 = 0; yd0 = 0;
 A = 10*m;
 
 %Case1 : sigma^2 - rho > 0, over damped
-% b = 700; k = 125;
+b = 700; k = 125;
 %Case1 : sigma^2 - rho = 0, critically damped
 % b = 700; k = b^2/(4*m);
 %Case1 : sigma^2 - rho < 0, under damped
-b = 200; k = 2450;
+% b = 250; k = 1100;
 
 sigma = b/(2*m); rho = k/m; eta = 1/m;
 delta = sigma^2 - rho;
@@ -46,7 +47,7 @@ else
     
     yH = K*exp(-sigma*t).*sin(omega*t+phiH);
     yE1 = exp(-sigma*t).*sin(omega*t+phiE);
-    yE = yH + eta*A*(omega/(omega^2 + sigma^2) - yE1)/omega;
+    yE = eta*A*(omega/(omega^2 + sigma^2) - yE1)/omega;
     h3 = tf([1, 2*sigma, rho], -1);
     subplot(313); rlocus(h3); grid on;
 end    
@@ -62,5 +63,17 @@ yT = yH + yE;
 % 
 % subplot(313); plot(t,yT); axis([0 duration -2.8 15]);
 % ylabel('Total Response [V]'); grid on;
+
+subplot(311); plot(t,yH); axis([0 duration -5.0 15]);
+ylabel('Homogeneous Response [V]'); grid on;
+
+subplot(312); plot(t,yE); axis([0 duration -5.0 15]);
+ylabel('Exogeneous Response [V]'); grid on;
+
+subplot(313); plot(t,yT); axis([0 duration -5.0 15]);
+ylabel('Total Response [V]'); grid on;
+
+
+
 
  
