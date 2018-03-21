@@ -1,10 +1,10 @@
-duration = 25; m = 200;
-y0 = -1.50; yd0 = 1.80;
+duration = 25; m = 40;
+y0 = 0; yd0 = 0;
 % y0 = 0; yd0 = 0;
 A = 10*m;
 
 %Case1 : sigma^2 - rho > 0, over damped
-b = 700; k = 125;
+b = 300; k = 200;
 %Case1 : sigma^2 - rho = 0, critically damped
 % b = 700; k = b^2/(4*m);
 %Case1 : sigma^2 - rho < 0, under damped
